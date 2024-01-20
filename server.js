@@ -2,7 +2,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const searchRoute = require('./route/searchRoute');
+const searchRoute = require('./searchRoute');
 
 const app = express();
 const PORT = 3000;
@@ -178,14 +178,14 @@ app.use((req, res, next) => {
     console.log('Request headers:', req.headers);
     const apiKey = req.headers.authorization;
     console.log('Received API Key:', apiKey);
-    
+
     if (apiKey === 'AIzaSyCYge6cXhLuz3iSoP2UAxahosMBMkjJcWI') {
       next();
     } else {
       res.status(401).json({ error: 'Unauthorized' });
     }
 }
-)    
+)
 
 app.use('/api', searchRoute);
 
